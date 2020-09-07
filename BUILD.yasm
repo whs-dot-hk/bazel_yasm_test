@@ -1,0 +1,18 @@
+load("@rules_foreign_cc//tools/build_defs:configure.bzl", "configure_make")
+
+filegroup(
+  name = "all",
+  srcs = glob(["**"]),
+)
+
+configure_make(
+  name = "yasm_binary",
+  configure_options = [
+    "CFLAGS='-Dredacted=\"redacted\"'",
+  ],
+  lib_source = ":all",
+  binaries = [
+    "yasm",
+  ],
+  visibility = ["//visibility:public"],
+)
